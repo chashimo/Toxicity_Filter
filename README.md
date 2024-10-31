@@ -283,7 +283,7 @@ please cite as described in the manpage.
 `convert_to_onnx.py`を使って`final_model/`をONNXにエクスポートします。
 
 ```sh
-python3 convert_to_onnx.py
+> python3 convert_to_onnx.py
 ```
 
 この結果、`deberta.onnx`が出来上がります。
