@@ -204,7 +204,15 @@ please cite as described in the manpage.
 
 ### 処理対象ファイルのリストの作成
 
-まず、GPU4枚を使って並列処理するために、`ja_cc1/`、`ja_cc2/`、`ja_cc3/`にあるファイルのリストを作成します。
+まず、`ja_cc1/`、`ja_cc2/`、`ja_cc3/`へのリンクをカレントディレクトリに作っておきます。
+
+```sh
+> ln -s /path/to/ja_cc1
+> ln -s /path/to/ja_cc2
+> ln -s /path/to/ja_cc3
+```
+
+次に、GPU4枚を使って並列処理するために、`ja_cc1/`、`ja_cc2/`、`ja_cc3/`にあるファイルのリストを作成します。
 
 ```sh
 > parallel 'ls ja_cc{}|cut -d\. -f1 > file_list{}' ::: 1 2 3
