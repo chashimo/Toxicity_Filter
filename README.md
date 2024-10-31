@@ -229,7 +229,7 @@ please cite as described in the manpage.
 ```
 
 ```sh
-wc -l file_list[123]_0[1-4]
+> wc -l file_list[123]_0[1-4]
   17 file_list1_01
   17 file_list1_02
   17 file_list1_03
@@ -276,4 +276,15 @@ wc -l file_list[123]_0[1-4]
 ```
 
 `ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`do_filter.py`に`threshold = 8.4`とありますが、この`8.4`が分類閾値です。
+
+
+## 補足: HuggingFaceからONNXへのexport
+
+`convert_to_onnx.py`を使って`final_model/`をONNXにエクスポートします。
+
+```sh
+python3 convert_to_onnx.py
+```
+
+この結果、`deberta.onnx`が出来上がります。
 
