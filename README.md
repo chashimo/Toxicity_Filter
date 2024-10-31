@@ -257,8 +257,7 @@ please cite as described in the manpage.
 
 ```
 
-すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。
-これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。
+すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。GPU4枚で、各々丸一日かかるかもしれません。
 
 
 ### 有害スコアに基づく分類
@@ -275,7 +274,7 @@ please cite as described in the manpage.
 > python3 do_filter.py /path/to/ja_cc3/ toxic_scores3/ ja_cc3_toxic/ ja_cc3_toxicity_filtered/
 ```
 
-`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`do_filter.py`に`threshold = 8.4`とありますが、この`8.4`が分類閾値です。
+`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。各々1並列で実行すると丸一日かかるかもしれません。`do_filter.py`に`threshold = 8.4`とありますが、この`8.4`が分類閾値です。
 
 
 ## 補足: HuggingFaceからONNXへのexport
