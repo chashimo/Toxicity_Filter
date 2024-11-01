@@ -186,7 +186,7 @@ please cite as described in the manpage.
     - 有害文書フィルタリング用にfinetuningした、HuggingFace形式のDeBERTaモデルです。モデル自体はONNXのものを使いますが、この中にあるトークナイザーが必要になるのでこの中に含めています。（トークナイザーもHuggingfaceからダウンロードできるのでなくてもいいのですが...）
 
 - `deberta.onnx`
-    - 上記モデルをONNX形式にexportしたものです。これを使って入力された文書に有害スコアを付与します。
+    - 上記モデルを、TensorRTによりNVIDIAハードウェアに最適化されたONNX形式にexportしたものです。これを使って入力された文書に有害スコアを付与します。
 
 - `batch_inference_onnx_logits.py`
     - `deberta.onnx`で有害スコアを付与するためのPythonスクリプトです。
@@ -273,13 +273,14 @@ please cite as described in the manpage.
 `ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`70`は使用するCPU core数です。CPU core数が`1`だと丸一日かかるかもしれません。`8.4`は分類閾値です。閾値を上げるとprecisionが高くなりrecallが低くなる傾向にあり、閾値を下げるとprecisionが低くなりrecallが高くなる傾向にあります。
 
 
-## 補足: HuggingFaceからONNXへのexport
+## 補足: DeBERTaモデルのHuggingFace形式からTensorRT形式への変換
 
-`convert_to_onnx.py`を使って`final_model/`をONNXにエクスポートします。
+`convert_to_onnx.py`を使ってfine-tuneされたDeBERTa (`final_model/`) をTensorRT形式に変換します。
+正確には、TensorRTをExecution Providerとして使うONNXにエクスポートします。
 
 ```sh
 > python3 convert_to_onnx.py
 ```
 
-この結果、`deberta.onnx`が出来上がります。
+この結果、`deberta.onnx`が出来上がります。`batch_inference_onnx_logits.py`から`deberta.onnx`を使うことで、`text`に有害スコアを付与できます。
 
