@@ -270,7 +270,7 @@ please cite as described in the manpage.
 > bash parallel_classify.sh ja_cc3/ toxic_scores3/ ja_cc3_toxic/ ja_cc3_toxicity_filtered/ 70 8.4
 ```
 
-`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`70`は使用するCPU core数です。CPU core数が`1`だと丸一日かかるかもしれません。`8.4`は分類閾値です。
+`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`70`は使用するCPU core数です。CPU core数が`1`だと丸一日かかるかもしれません。`8.4`は分類閾値です。閾値を上げるとprecisionが高くなりrecallが低くなる傾向にあり、閾値を下げるとprecisionが低くなりrecallが高くなる傾向にあります。
 
 
 ## 補足: HuggingFaceからONNXへのexport
