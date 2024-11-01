@@ -219,8 +219,7 @@ please cite as described in the manpage.
 ```
 
 `ja_cc1/`、`ja_cc2/`、`ja_cc3/`のファイルリスト`file_list1`、`file_list2`、`file_list3`ができました。
-それぞれ65ファイル（65行）あります。
-これらのリストを各々4つに分割します。
+それぞれ65ファイル（65行）ある場合、17行ずつ（最後のファイルは14行）に4分割します。
 
 ```sh
 > split -l 17 file_list1 -a 2 --numeric-suffixes=1 file_list1_
