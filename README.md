@@ -276,8 +276,7 @@ please cite as described in the manpage.
 
 ## 補足: DeBERTaモデルのHuggingFace形式からTensorRT形式への変換
 
-`convert_to_onnx.py`を使って、HuggingFace形式のDeBERTaモデル (`final_model/`) をTensorRT形式に変換します。
-正確には、TensorRTをExecution Providerとして使ってNVIDIAハードウェアに最適化されたONNX形式にエクスポートします。
+`deberta.onnx`は、`convert_to_onnx.py`を使って、HuggingFace形式のDeBERTaモデル (`final_model/`) をTensorRT形式に変換することで生成しました。正確には、TensorRTをExecution Providerとして使ってNVIDIAハードウェアに最適化されたONNX形式にエクスポートしました。
 
 ```sh
 > python3 convert_to_onnx.py
