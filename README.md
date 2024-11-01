@@ -257,7 +257,7 @@ please cite as described in the manpage.
 
 ```
 
-すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。GPU4枚で、各々半日ほどかかるかもしれません。
+すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。GPU4枚で、各々丸一日かかるかもしれません。
 
 
 ### 有害スコアに基づく分類
