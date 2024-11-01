@@ -196,7 +196,8 @@ please cite as described in the manpage.
 - `batch_inference_onnx_logits_ja_cc3.sh`
     - `batch_inference_onnx_logits.py`を使って`ja_cc1/`、`ja_cc2/`、`ja_cc3/`にあるファイルの各文書に有害スコアを付与するスクリプトです。ほとんど同じです。
 
-- `do_filter.py`
+- `classify_jsonl.py`
+- `parallel_classify.sh.py`
     - `batch_inference_onnx_logits_ja_cc[123].sh`で付与された有害スコアに基づいて各文書を有害か無害かに分類します。
 
 
