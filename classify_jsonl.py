@@ -22,12 +22,12 @@ def parse_arguments():
     parser.add_argument(
         'toxic_directory',
         type=str,
-        help='Directory to save toxic texts'
+        help='Directory to save toxic JSONL files'
     )
     parser.add_argument(
         'nontoxic_directory',
         type=str,
-        help='Directory to save non-toxic texts'
+        help='Directory to save non-toxic JSONL files'
     )
     
     # Optional argument for threshold with default value
@@ -48,6 +48,20 @@ def parse_arguments():
     
     return parser.parse_args()
 
+def count_lines(file_path, is_gz=False):
+    """Efficiently count the number of lines in a file."""
+    count = 0
+    open_func = gzip.open if is_gz else open
+    mode = 'rt' if is_gz else 'r'
+    try:
+        with open_func(file_path, mode, encoding='utf-8') as f:
+            for _ in f:
+                count += 1
+    except Exception as e:
+        print(f"Error counting lines in {file_path}: {e}", file=sys.stderr)
+        return -1
+    return count
+
 def process_file(jsonl_file, args):
     base_name = os.path.splitext(os.path.splitext(jsonl_file)[0])[0] + '.txt'  # Remove '.jsonl.gz' and add '.txt'
     score_file_path = os.path.join(args.score_directory, base_name)
@@ -59,6 +73,19 @@ def process_file(jsonl_file, args):
     jsonl_path = os.path.join(args.jsonl_directory, jsonl_file)
     toxic_path = os.path.join(args.toxic_directory, jsonl_file)
     nontoxic_path = os.path.join(args.nontoxic_directory, jsonl_file)
+    
+    # Count lines in both files
+    jsonl_line_count = count_lines(jsonl_path, is_gz=True)
+    score_line_count = count_lines(score_file_path, is_gz=False)
+    
+    if jsonl_line_count == -1 or score_line_count == -1:
+        print(f"Error: Failed to count lines for {jsonl_file}. Skipping this file.", file=sys.stderr)
+        return
+    
+    if jsonl_line_count != score_line_count:
+        print(f"Warning: Line count mismatch for {jsonl_file}: JSONL has {jsonl_line_count} lines, "
+              f"Score file has {score_line_count} lines. Skipping this file.", file=sys.stderr)
+        return
     
     try:
         with gzip.open(jsonl_path, 'rt', encoding='utf-8') as jf, \

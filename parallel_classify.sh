@@ -65,5 +65,5 @@ export -f process_single_file
 
 # Find all .jsonl.gz files in the JSONL_DIR and pass them to GNU parallel
 find "$JSONL_DIR" -maxdepth 1 -type f -name '*.jsonl.gz' | \
-    parallel --jobs "$NUM_CPUS" --progress process_single_file {##}
+    parallel --jobs "$NUM_CPUS" --progress process_single_file {/}
 
