@@ -79,11 +79,11 @@ def process_file(jsonl_file, args):
     score_line_count = count_lines(score_file_path, is_gz=False)
     
     if jsonl_line_count == -1 or score_line_count == -1:
-        print(f"Error: Failed to count lines for {jsonl_file}. Skipping this file.", file=sys.stderr)
+        print(f"Error: Failed to count lines for {jsonl_file} ({score_file_path}). Skipping this file.", file=sys.stderr)
         return
     
     if jsonl_line_count != score_line_count:
-        print(f"Warning: Line count mismatch for {jsonl_file}: JSONL has {jsonl_line_count} lines, "
+        print(f"Warning: Line count mismatch for {jsonl_file} and {score_file_path}: JSONL has {jsonl_line_count} lines, "
               f"Score file has {score_line_count} lines. Skipping this file.", file=sys.stderr)
         return
     
