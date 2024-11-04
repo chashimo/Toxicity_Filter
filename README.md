@@ -258,7 +258,7 @@ please cite as described in the manpage.
 
 ```
 
-すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。GPU4枚で、各々30時間くらいかかるかもしれません。
+すると、同じディレクトリに`toxic_scores1/`、`toxic_scores2/`、`toxic_scores3/`が作られます。これらのディレクトリには`CC-MAIN-2013-2016.txt`、`CC-MAIN-2017-04.txt`などのファイルがあり、その中に、`ja_cc1/CC-MAIN-2013-2016.jsonl.gz`、`ja_cc1/CC-MAIN-2017-04.jsonl.gz`などのファイルの各`text`に付与された有害スコア（positiveクラス（有害）のlogit）が出力されます。`ja_cc1/`, `ja_cc2/`, `ja_cc3/`の分類が、A100 (40GB) x 4枚で、各々だいたい30時間、12時間、11時間くらいかかるかもしれません。
 
 
 ### 有害スコアに基づく分類
@@ -271,7 +271,7 @@ please cite as described in the manpage.
 > bash parallel_classify.sh ja_cc3/ toxic_scores3/ ja_cc3_toxic/ ja_cc3_toxicity_filtered/ 70 8.4
 ```
 
-`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`70`は使用するCPU core数です。CPU core数が`1`だと丸一日かかるかもしれません。`8.4`は分類閾値です。閾値を上げるとprecisionが高くなりrecallが低くなる傾向にあり、閾値を下げるとprecisionが低くなりrecallが高くなる傾向にあります。
+`ja_cc[123]_toxic/`に有害な`text`が、`ja_cc[123]_toxicity_filtered/`に無害な`text`が出力されます。`70`は使用するCPU core数です。CPU core数が`70`だと各々1時間程度かかるかもしれません。`8.4`は分類閾値です。閾値を上げるとprecisionが高くなりrecallが低くなる傾向にあり、閾値を下げるとprecisionが低くなりrecallが高くなる傾向にあります。
 
 
 ## 補足: DeBERTaモデルのHuggingFace形式からTensorRT形式への変換
